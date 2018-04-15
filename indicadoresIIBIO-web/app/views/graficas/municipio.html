@@ -1,0 +1,287 @@
+<script src="lib/ion.rangeSlider/js/ion.rangeSlider.js"></script>
+
+<div class="container" >
+    
+    <!--<h1>Estado de Veracruz</h1>-->
+    <hr color="blue" size=3>
+
+
+    <br/>
+ 
+   <div class="row" >
+       
+        <div class="col-md-8">
+            <input id="range_09" class="irs-hidden-input" readonly="" hidden>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class="row" height ="375px">
+        <div class="col-md-8">
+            
+            <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Estudios de {{titulo}}</h3>
+
+                        <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                                <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8">
+                                <div class="chart">
+                                    <canvas id="myPieChart" style="height: 435px;"></canvas>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+            </div>
+        </div>
+        <div class="col-md-4">
+          <!-- Info Boxes Style 2 -->
+            <div class="info-box bg-yellow">
+                <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+                <!-- /.info-box-content -->
+                <div class="info-box-content">
+                  <span class="info-box-text">Personas atendidas en el mes</span>
+                  <span class="info-box-number">{{KEY_PDM}}</span>
+
+                  <div class="progress">
+                    <div class="progress-bar" style="width:{{KEY_CPM}}%"></div>
+                  </div>
+                      <span class="progress-description">
+                        {{KEY_CPM}}%&nbsp;&nbsp;de la meta esperada
+                      </span>
+                </div>
+            </div>
+            <!-- ./info-box-content -->
+            
+            <!-- /.info-box-content -->
+            <div class="info-box bg-yellow">
+                <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+                
+                <div class="info-box-content">
+                  <span class="info-box-text"><h6>Personas atendidas acumuladas al mes</h6></span>
+                  <span class="info-box-number">{{KEY_PAM}}</span>
+
+                  <div class="progress">
+                    <div class="progress-bar" style="width:{{KEY_CPA}}%"></div>
+                  </div>
+                      <span class="progress-description">
+                        {{KEY_CPA}}%&nbsp;&nbsp;de la meta esperada
+                      </span>
+                </div>
+                
+           </div>
+
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Meta del mes</span>
+              <span class="info-box-number">{{KEY_MDM}}</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+                  <span class="progress-description">
+                    Estimado por población atendida
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Meta acumulada al mes</span>
+              <span class="info-box-number">{{KEY_MAM}}</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+                  <span class="progress-description">
+                    Estimado por población atendida
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>        
+          <!-- /.info-box -->
+          <div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Meta estatal</span>
+              <span class="info-box-number">{{KEY_ME}}</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width:{{KEY_CAV}}%"></div>
+              </div>
+                  <span class="progress-description">
+                    {{KEY_CAV}}%&nbsp;&nbsp;de la meta estatal
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          <!--<div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Direct Messages</span>
+              <span class="info-box-number">163,921</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 40%"></div>
+              </div>
+                  <span class="progress-description">
+                    40% Increase in 30 Days
+                  </span>
+            </div>-->
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+
+    <br>
+    <!-- /.row -->
+    <div class="row">
+        
+        
+        <div class="col-lg-3 col-xs-6">
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>{{KEY_CPA}}<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Cumplimiento</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-android-checkmark-circle"></i>
+            </div>
+            
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{KEY_CAV}}<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Avance estatal</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-arrow-graph-up-right"></i>
+            </div>
+            
+          </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- ./row -->
+    <br>
+    <!-- /.row -->
+    <div class="row">
+        
+        <div class="col-md-1"> </div>
+        <div class="col-md-4">
+          <!-- Info Boxes Style 2 -->
+          
+            <div class="info-box bg-yellow" ng-click="fnsectorial('sectorial')">
+            <span class="info-box-icon"><i class="ion ion ion-pie-graph"></i></span>
+            <!--<a href="pagina.html" target="_blank" > abre pagina </a>-->
+            <div class="info-box-content">
+              <span class="info-box-text">&nbsp;</span>
+              <span class="info-box-number"> SECTORIAL </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        
+        </div>
+        <!-- ./col -->
+        <div class="col-md-2"> </div>
+        <div class="col-md-4">
+          <!-- Info Boxes Style 2 -->
+          <div class="info-box bg-yellow" ng-click="fnsectorial('jurisdiccion')">
+            <span class="info-box-icon"><i class="ion ion-ios-home-outline"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">&nbsp;</span>
+              <span class="info-box-number">JURISDICCIONAL</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- ./row --> 
+    <br>
+    <!-- /.row -->
+    <div class="row" height ="275px">
+        
+        <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Estudios de {{titulo}} por día</h3>
+
+                            <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                    </button>
+                                    <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-8">
+                                    <div class="chart">
+                                        <canvas id="myChart"></canvas>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                </div>
+            </div>
+    </div>
+    
+    <div class="row" height ="275px">
+        
+        <div class="col-md-2"></div>
+            <div class="col-md-16">
+                <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Municipios atendidos</h3>
+
+                            <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                    </button>
+                                    <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+                        <div class="box-body" no-padding>
+                            <div class="row">
+                                <!--<div class="col-md-9 col-sm-8">-->
+                                    <div class="pad">
+                                        <!-- Map will be created here -->
+                                        <div id="map" style="height:625px;"></div>
+
+                                    </div>
+                        </div>
+                        <!-- /.box-body -->
+                </div>
+            </div>
+    </div>
+    <!-- ./row -->
+</div>
+
+ 

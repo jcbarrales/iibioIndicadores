@@ -1,0 +1,97 @@
+<script src="lib/ion.rangeSlider/js/ion.rangeSlider.js"></script>
+<div class="container" >
+    
+    <!--<h1>Estado de Veracruz</h1>-->
+    <hr color="blue" size=3>
+     <h3 class="box-title"><b>Distribución por jurisdicción de {{titulo}}</b></h3>
+    <div class="row" >
+        <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <input id="range_09" class="irs-hidden-input" readonly="" hidden>
+                <br>
+            </div>
+        </div>
+    </div>
+    
+    <!-- /.row -->
+    <div class="row" height ="375px">
+        
+        <div class="col-md-2"></div>
+            <div class="col-md-8">        
+                <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Estudios de {{titulo}} por jurisdicción</h3>
+
+                            <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                    </button>
+                                    <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+                        <div class="box-body">
+                                    <div class="chart">
+                                        <canvas id="myChart"></canvas>
+                                    </div>
+                        </div>
+                        <!-- /.box-body -->
+                </div>
+            </div>
+    </div>
+    <!-- ./row -->
+    
+    <!--*/ Inicia lista de edades-->
+    <div class="row" >
+        <div class="col-md-2">        </div>
+            <div class="col-md-8">
+                <div class="box box-aqua">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Estudios de {{titulo}}</h3>
+
+                            <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                    </button>
+                                    <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                    <table class="table table-condensed">
+                                <theader>
+                                    <tr>
+                                      <th style="width: 5%"></th>
+                                      <th style="width: 20%">Jurisdicción</th>
+                                      <th style="width: 20%">Género</th>
+                                      <th style="width: 15%">Cantidad</th>
+                                      <th style="width: 20%"></th>
+                                      <th style="width: 15%">Porcentaje</th>
+                                      <th style="width: 5%"></th>
+                                    </tr>
+                                </theader>
+                                <tbody>
+                                    <tr ng-repeat="item in listaJurisdiccion | orderBy:'KEY_IDINDEX'" >
+                                      <td></td>
+                                      <!--cada tres filas hacemos un rowspan (mujeres,hombres,total)-->
+                                      <td  style="vertical-align: middle" ng-class="{letraNegrita: item.KEY_NAMESEXO == 'TOTAL', letraNormal: item.KEY_NAMESEXO != 'TOTAL'}" ng-if="$index %3 == 0" rowspan="3" 
+                                          ><!--Escribimos la categoría-->
+                                          <B>{{item.KEY_INDEX}}</B></td>  
+                                      <td ng-class="{letraNegrita: item.KEY_NAMESEXO == 'TOTAL', letraNormal: item.KEY_NAMESEXO != 'TOTAL'}"><!--Escribimos el género o total-->
+                                          {{item.KEY_NAMESEXO}}</td>
+                                      <td ng-class="{letraNegrita: item.KEY_NAMESEXO == 'TOTAL', letraNormal: item.KEY_NAMESEXO != 'TOTAL'}"><!--Escribimos la cantidad-->
+                                          {{item.KEY_PDM | number:0}} </td> 
+                                      <td ng-class="{letraNegrita: item.KEY_NAMESEXO == 'TOTAL', letraNormal: item.KEY_NAMESEXO != 'TOTAL'}"><!--dibujamos y configuramos la barra de progreso-->
+                                        <div class="progress progress-xs">
+                                          <div class="progress-bar progress-bar-secondary" style="width: {{(100*item.KEY_PDM/totaljurisdiccion) || 0 | number:0}}%"></div>
+                                        </div>
+                                      </td>
+                                      <td ng-class="{letraNegrita: item.KEY_NAMESEXO == 'TOTAL', letraNormal: item.KEY_NAMESEXO != 'TOTAL'}"><!--dibujamos y configuramos la etiqueta del progreso-->
+                                          <span class="badge bg-blue">{{(100*item.KEY_PDM/totaljurisdiccion) || 0 | number:2}}%</span></td> <!--Escribimos el porcentaje-->
+                                    </tr>
+                                  </tbody>
+                              </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+     </div>
+    
+   

@@ -1,0 +1,174 @@
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>I</b>BO</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>II</b>BIO</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a  class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+
+
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+                            <span class="hidden-xs">Hola,{{session.username}}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+
+                            <!-- Menu Body -->
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+
+                                <div class="pull-right" ng-click="cerrar()">
+                                    <a href="" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        <a href="" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{session.username}}</p>
+                    <a href=""><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <!-- search form 
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+                </div>
+            </form>-->
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header">Menú de navegación</li>
+                <li class="treeview">
+                    <a ng-click="eligeEstudio('ATENCIONID','personas atendidas')">
+                        <i class="fa  fa-user-md"></i> <span>Personas atendidas</span>
+                    </a>
+                    <a href="">
+                        <i class="fa  fa-heartbeat"></i> <span>Estudios</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ><a ng-click="eligeEstudio('SOMATOMETRIA','somatometría y/o signos vitales')"><i class="fa fa-plus-square"></i> Somatometría y/o signos vitales</a></li>
+                        <li ><a ng-click="eligeEstudio('MASTOGRAFIA','mastrografía')"><i class="fa fa-plus-square"></i> Mastografía</a></li>
+                        <li ><a ng-click="eligeEstudio('COLPOSCOPIA','colposcopia')"><i class="fa fa-plus-square"></i> Colposcopia</a></li>
+                        <li ><a ng-click="eligeEstudio('PAPANICOLAOU','papanicolaou')"><i class="fa fa-plus-square"></i> Papanicolaou</a></li>
+                        <li ><a ng-click="eligeEstudio('ULTRASONIDO','ultrasonido')"><i class="fa fa-plus-square"></i> Ultrasonido</a></li>
+                        <li ><a ng-click="eligeEstudio('RADIOGRAFIA','radiografía')"><i class="fa fa-plus-square"></i> Radiografía</a></li>
+                        <li ><a ng-click="eligeEstudio('ELECTROCARDIOGRAMA','electrocardiograma')"><i class="fa fa-plus-square"></i> Electrocardiograma</a></li>
+                        <li ><a ng-click="eligeEstudio('DENSITOMETRIA_OSEA','densitometría ósea')"><i class="fa fa-plus-square"></i> Densitometría calcánea</a></li>
+                        <li ><a ng-click="eligeEstudio('PROFILAXIS','profilaxis')"><i class="fa fa-plus-square"></i> Profilaxsis</a></li>
+                        <li ><a ng-click="eligeEstudio('FLUOR','aplicación de flúor')"><i class="fa fa-plus-square"></i> Flúor</a></li>
+                        <li ><a ng-click="eligeEstudio('EXTRACCIONES','extracciones dentales')"><i class="fa fa-plus-square"></i> Extracciones</a></li>
+                        <li class="active treeview">
+                                <a href="">
+                                    <i class="fa  fa-heartbeat"></i> <span>Estudios de laboratorio</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                            <ul class="treeview-menu">
+                                <li ><a ng-click="eligeEstudio('BIOMETRIA_HEMATICA','biometría hemática')"><i class="fa fa-plus-square"></i> Biometría hemática</a></li>
+                                <li ><a ng-click="eligeEstudio('QUIMICA_SANGUINEA','química sanguínea')"><i class="fa fa-plus-square"></i> Química sanguínea</a></li>
+                                <li ><a ng-click="eligeEstudio('HEMOGLOBINA_GLUCOSILADA','hemoglobina glucosilada')"><i class="fa fa-plus-square"></i> Hemoglobina glucosilada</a></li>
+                                <li ><a ng-click="eligeEstudio('E_G_O','E.G.O.')"><i class="fa fa-plus-square"></i> E.G.O.</a></li>
+                                <li ><a ng-click="eligeEstudio('REACCIONES_FEBRILES','reacciones febriles')"><i class="fa fa-plus-square"></i> Reacciones febriles</a></li>
+                                <li ><a ng-click="eligeEstudio('VIH','VIH')"><i class="fa fa-plus-square"></i> VIH</a></li>
+                                <li ><a ng-click="eligeEstudio('ANTIGENO_PROSTATICO','antígeno prostático')"><i class="fa fa-plus-square"></i> Antígeno prostático</a></li>
+                                <li ><a ng-click="eligeEstudio('DEXTROXTIX','dextroxtix')"><i class="fa fa-plus-square"></i> Dextroxtix</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-user-md"></i> <span>Hallazgos</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ><a ng-click="eligeHallazgo('MAS','H_MASTOGRAFIA','MASTOGRAFIA',' mastografía')"><i class="fa fa-plus-square"></i> Mastografía</a></li>
+                        <li ><a ng-click="eligeHallazgo('IMC','H_ESTADO_NUTRICIONAL','SOMATOMETRIA',' somatometria')"><i class="fa fa-plus-square"></i> Estado nutricional</a></li>
+                        <li ><a ng-click="eligeHallazgo('VIH','H_VIH','VIH',' VIH')"><i class="fa fa-plus-square"></i> VIH</a></li>
+                        <li ><a ng-click="eligeHallazgo('PSA','H_ANTIGENO','ANTIGENO_PROSTATICO',' cáncer de próstata')"><i class="fa fa-plus-square"></i> Cáncer de próstata</a></li>
+                        <li ><a ng-click="eligeHallazgo('HPC','H_HIPERCOLESTEROLEMIA','COLESTEROL',' hipercolesterolemia')"><i class="fa fa-plus-square"></i> Hipercolesterolemia</a></li>
+                        <li ><a ng-click="eligeHallazgo('BHC','H_ANEMIA','BIOMETRIA_HEMATICA',' biometría hemática')"><i class="fa fa-plus-square"></i> Anemia</a></li>
+                        <li ><a ng-click="eligeHallazgo('HBA','H_DIABETES','dextroxtix',' hemoglobina glucosilada')"><i class="fa fa-plus-square"></i> Diabetes</a></li>
+                        
+
+                    </ul>
+                </li>
+                
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <h1>Estado de Veracruz</h1>
+                <small></small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Dashboard</li>
+            </ol>-->
+        </section>
+
+        <!-- Main content -->
+        <div ui-view height ="100%"><div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.3.8
+        </div>
+        <strong>Copyright &copy; 2017-2018 <a href="http://www.cbisystems.mx/">CbiSystems</a>.</strong> All rights
+        reserved.
+    </footer>
+
+
+</div>

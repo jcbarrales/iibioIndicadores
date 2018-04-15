@@ -1,0 +1,153 @@
+<div class="container" >
+    
+    <!--<h1>Estado de Veracruz</h1>-->
+    <hr color="blue" size=3>
+    <h3 class="box-title"><b>Hallazgos de {{titulo}}</b></h3>
+    <br/>
+    <div class="row">
+        <div class="col-md-8">
+            <input id=range_09 class="irs-hidden-input" readonly="" hidden>
+        </div>
+    </div>
+    
+
+    <div class="row" height ="375px">
+            <div class="col-md-6">
+
+                <div class="box box-danger">
+                        <div class="box-body">
+                                    <div class="chart">
+                                        <canvas id="myChart"></canvas>
+                                    </div>
+                        </div>
+                        <!-- /.box-body -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="box box-danger">
+                <div class="box-body">
+                    <table class="table table-condensed">
+                        <theader>
+                            <tr>
+                                <th style="width: 15%">Categorías</th>
+                                <th style="width: 45%">Descripción</th>
+                                <th style="width: 20%">Total</th>
+                                <th style="width: 20%">Porcentaje</th>
+                            </tr>
+                        </theader>
+                        <tbody>
+                            <tr ng-repeat="item in listatabla " >
+                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}">
+                                    <span ng-if="item.KEY_INDEX == 'S/R'"> <B>NORMAL</B></span> 
+                                    <span ng-if="item.KEY_INDEX != 'S/R'"> <B>{{item.KEY_INDEX}}</B></span>
+                                </td>
+                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}">{{item.KEY_VALUE}}</td>
+                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}">{{item.KEY_PDM | number:0}}</td>
+                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}"><span class="badge bg-blue">{{(100*item.KEY_PDM/total) || 0 | number:0}}%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+    </div>
+  
+    
+    <!--JURISDICCIÓN-->
+    
+    <div class="row" >
+        
+            <div ng-cloak>
+              <md-content>
+                <md-tabs md-dynamic-height md-border-bottom>
+                  <md-tab label="Tabla">
+                    <md-content class="md-padding">
+                        <!--*/ Inicia lista de edades-->
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                                  <h3 class="box-title"><b>Categorización de  {{titulo}} por jurisdicción</b></h3>
+                                                    <div class="box-tools pull-right">
+                                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                        </button>
+                                                            <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                                    </div>
+                                                </div>
+                            <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="row">
+                                            <table class="table table-condensed">
+                                            <theader>
+                                            <tr>
+                                                <th style="width: 5%"></th>
+                                                <th style="width: 20%">Jurisdicción </th>
+                                                <th style="width: 20%">Hallazgo</th>
+                                                <th style="width: 15%">Cantidad</th>
+                                                <th style="width: 20%"></th>
+                                                <th style="width: 15%">Porcentaje</th>
+                                                <th style="width: 5%"></th>
+                                            </tr>
+                                            </theader>
+                                            <tbody>
+                                            <tr ng-repeat="item in listaJurisdiccion | orderBy:'KEY_IDINDEX'" >
+                                                <td></td>
+                                                <!--cada tres filas hacemos un rowspan (mujeres,hombres,total)-->
+                                                <td  style="vertical-align: middle" ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}" ng-if="$index % item.KEY_CONTADOR == 0" rowspan={{item.KEY_CONTADOR}} 
+                                                ><!--Escribimos la categoría-->
+                                                    <B>{{item.KEY_INDEX}}</B>
+                                                </td>  
+                                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}"><!--Escribimos el género o total-->
+                                                    <span ng-if="item.KEY_HINDEX == 'S/R'"> <B>NORMAL</B></span> 
+                                                    <span ng-if="item.KEY_HINDEX != 'S/R'"> <B>{{item.KEY_HINDEX}}</B></span>
+
+                                                    </td>
+                                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}"><!--Escribimos la cantidad-->
+                                                    {{item.KEY_PDM | number:0}} </td> 
+                                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}"><!--dibujamos y configuramos la barra de progreso-->
+                                                    <div class="progress progress-xs">
+                                                        <div class="progress-bar progress-bar-secondary" style="width: {{(100*item.KEY_PDM/totaljurisdiccion) || 0 | number:0}}%"></div>
+                                                    </div>
+                                                </td>
+                                                <td ng-class="{letraNegrita: item.KEY_INDEX == 'TOTAL', letraNormal: item.KEY_INDEX != 'TOTAL'}"><!--dibujamos y configuramos la etiqueta del progreso-->
+                                                    <span class="badge bg-blue">{{(100*item.KEY_PDM/totaljurisdiccion) || 0 | number:2}}%</span></td> <!--Escribimos el porcentaje-->
+                                            </tr>
+                                            </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                        </div>
+                    </md-content>
+                  </md-tab>
+                  <md-tab label="Gráfica">
+                    <md-content class="md-padding">
+                        <!--*/ Inicia gráfica de edades-->
+                        <div class="box box-danger">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"><b>Categorización de {{titulo}} por jurisdicción</b></h3>
+                                                <div class="box-tools pull-right">
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                    </button>
+                                                    <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                                </div>
+                                            </div>
+                                            <div class="box-body">
+                                                <div class="chart">
+                                                    <canvas id="myChartJ"></canvas>
+                                                </div>
+                                            </div>
+                                                        <!-- /.box-body -->
+                                            </div>
+                    </md-content>
+                  </md-tab>
+                </md-tabs>
+              </md-content>
+            </div>
+
+    <div class="box box-danger">
+        
+                        <!-- /.box-body -->
+    </div>
+
+</div>
+
+<script src="lib/ion.rangeSlider/js/ion.rangeSlider.js"></script>

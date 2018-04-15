@@ -1,0 +1,75 @@
+<!--<div id="wrapper">
+    <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+    <div id="login" class="animate form" >
+        <section class="login_content">
+            <form ng-submit="login()" role="form" name="form"   >
+                <span>INDICADORES IIBIO</span>
+                <div class="form-group" style=" padding-top:60px; ">
+                    <input type="text" name="username" class="form-control" placeholder="Usuario" id="username" ng-model="username"  />
+                    <span ng-show="username.$dirty && username.$error.required">Se requiere el usuario</span>
+                </div>
+                <div>
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña" id="password"  ng-model="password" />
+                </div>
+                <div>
+                    <button type="submit" ng-disabled="form.$invalid"class="btn btn-success pull-left ">Ingresar</button>
+                    <p style="color: #10825A" class="clickeable" ng-click="RecoveryPassword()">Olvide la contraseña</p>
+
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>-->
+
+<div class="login-box">
+    <div class="login-logo">
+        <a>INDICADORES IIBIO</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Iniciar Sesión</p>
+
+        <form ng-submit="login()" role="form" name="form">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Usuario" ng-model="username" >
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password" ng-model="password" >
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <!--<label>
+                            <input type="checkbox"> Remember Me
+                        </label>-->
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+<!--
+        <div class="social-auth-links text-center">
+            <p>- OR -</p>
+            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+                Facebook</a>
+            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+                Google+</a>
+        </div>-->
+        <!-- /.social-auth-links -->
+
+        <a href="">Olvide la contraseña</a><br>
+        <a href="" class="text-center">Registrar Nuevo Usuario</a>
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+
+
+
