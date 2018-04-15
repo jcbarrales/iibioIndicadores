@@ -1,0 +1,28 @@
+package mx.cbisystems.resources;
+
+import mx.cbisystems.daos.ii_usuariosDAO;
+import mx.cbisystems.models.ii_usuarios;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+/**
+ * Created by Manuel on 21/05/2017.
+ */
+@Path("ii_usuarios")
+@Produces(MediaType.APPLICATION_JSON)
+public class ii_usuariosResource {
+    private final mx.cbisystems.daos.ii_usuariosDAO ii_usuariosDAO;
+
+    public ii_usuariosResource(ii_usuariosDAO ii_usuariosDAO)
+    { this.ii_usuariosDAO = ii_usuariosDAO;}
+    @GET
+    public Response getii_usuarios () {
+        List<ii_usuarios> ii_usuariosLista = ii_usuariosDAO.getii_usuarios();
+        return Response.status((Response.Status.OK)).entity(ii_usuariosLista).build();
+    }
+}

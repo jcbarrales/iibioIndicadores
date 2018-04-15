@@ -1,0 +1,52 @@
+package mx.cbisystems.resources;
+
+import mx.cbisystems.daos.ii_indicadorDAO;
+import mx.cbisystems.models.ii_indicador;
+import mx.cbisystems.models.ii_indicadorEncabezado;
+import mx.cbisystems.models.ii_indicadoresHEncabezado;
+import mx.cbisystems.models.ii_indicadorheader;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+/**
+ * Created by jcesar23mx on 24/05/2017.
+ */
+@Path("ii_Indicador")
+@Produces(MediaType.APPLICATION_JSON)
+public class ii_indicadorResource {
+
+    private final ii_indicadorDAO ii_indicadorDAO;
+
+    public ii_indicadorResource(ii_indicadorDAO ii_IndicadorDAO)
+    { this.ii_indicadorDAO = ii_IndicadorDAO;}
+    @GET
+    @Path("/N2_01_data")
+    public Response getii_01 () {
+        //Va a borrar una tabla temporal tmp_datos_Estudios
+        //y la va a reescribir con la información actualizada
+        ii_indicadorDAO.crea_Indicadores_tmp();
+
+
+        List<ii_indicador> ii_indicadorLista = ii_indicadorDAO.getii_01();
+        ii_indicadorEncabezado encabezado = new ii_indicadorEncabezado(ii_indicadorLista );
+
+        return Response.status((Response.Status.OK)).entity(encabezado).build();
+        //return Response.status((Response.Status.OK)).entity(ii_indicador01Lista).build();
+    }
+
+    @GET
+    @Path("/N2_01_header")
+    public Response getii_h01() {
+
+        List<ii_indicadorheader> ii_indicadorHeaderLista = ii_indicadorDAO.getii_h01();
+        ii_indicadoresHEncabezado encabezado = new ii_indicadoresHEncabezado(ii_indicadorHeaderLista) ;
+
+        return Response.status((Response.Status.OK)).entity(encabezado).build();
+
+    }
+}

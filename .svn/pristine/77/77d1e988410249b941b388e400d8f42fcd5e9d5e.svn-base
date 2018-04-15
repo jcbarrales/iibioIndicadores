@@ -1,0 +1,75 @@
+package mx.cbisystems;
+
+import io.dropwizard.forms.MultiPartBundle;
+import mx.cbisystems.config.*;
+
+
+import mx.cbisystems.daos.ii_Indicador01DAO;
+import mx.cbisystems.daos.ii_clientesDAO;
+import mx.cbisystems.daos.ii_formatoDAO;
+import mx.cbisystems.daos.ii_gruposDAO;
+import mx.cbisystems.daos.ii_indicadoresDAO;
+import mx.cbisystems.daos.ii_usuariosDAO;
+import mx.cbisystems.resources.*;
+
+
+import org.skife.jdbi.v2.DBI;
+import io.dropwizard.jdbi.DBIFactory;
+import io.dropwizard.Application;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+import javax.servlet.DispatcherType;
+import java.util.EnumSet;
+
+public class IndicadoresIIBIOService extends Application<IndicadoresIIBIOConfiguration> {
+    private static final Logger LOG = LoggerFactory.getLogger(IndicadoresIIBIOService.class);
+
+    public static void main(String[] args) throws Exception {
+        new IndicadoresIIBIOService().run(args);
+    }
+
+    @Override
+    public String getName() {
+        return "indicadoresIIBIO";
+    }
+
+    @Override
+    public void initialize(Bootstrap<IndicadoresIIBIOConfiguration> bootstrap) {
+        bootstrap.addBundle(new MultiPartBundle());
+
+    }
+
+    @Override
+    public void run(IndicadoresIIBIOConfiguration configuration,
+                    Environment environment) throws Exception {
+        environment.jersey().setUrlPattern("/indicadoresIIBIO/*");
+        final DBIFactory factory = new DBIFactory();
+        final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(),"mysql");
+
+        final ii_Indicador01DAO ii_indicador01dao = jdbi.onDemand(ii_Indicador01DAO.class);
+        environment.jersey().register(new ii_Indicador01Resource(ii_indicador01dao));
+
+        final ii_clientesDAO ii_clientesdao = jdbi.onDemand(ii_clientesDAO.class);
+        environment.jersey().register(new ii_clientesResource(ii_clientesdao));
+
+        final ii_formatoDAO ii_formatodao = jdbi.onDemand(ii_formatoDAO.class);
+        environment.jersey().register(new ii_formatoResource(ii_formatodao));
+
+        final ii_gruposDAO ii_gruposdao = jdbi.onDemand(ii_gruposDAO.class);
+        environment.jersey().register(new ii_gruposResource(ii_gruposdao));
+
+        final ii_indicadoresDAO ii_indicadoresdao = jdbi.onDemand(ii_indicadoresDAO.class);
+        environment.jersey().register(new ii_indicadoresResource(ii_indicadoresdao));
+
+        final ii_usuariosDAO ii_usuariosdao = jdbi.onDemand(ii_usuariosDAO.class);
+        environment.jersey().register(new ii_usuariosResource(ii_usuariosdao));
+
+        environment.getApplicationContext().addFilter(ii_Indicador01CrossDomainFilter.class,"/*", EnumSet.of(DispatcherType.REQUEST,DispatcherType.ERROR));
+
+
+    }
+}

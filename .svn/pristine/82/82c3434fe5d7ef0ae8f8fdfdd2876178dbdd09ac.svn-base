@@ -1,0 +1,36 @@
+package mx.cbisystems.resources;
+
+import com.google.gson.JsonParser;
+import mx.cbisystems.daos.ii_indicadorWebDAO;
+import org.json.simple.JSONObject;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+/**
+ * Created by jcesar23mx on 30/05/2017.
+ */
+@Path("ii_indicadoresWeb")
+@Produces(MediaType.APPLICATION_JSON)
+public class ii_indicadorWebResource {
+    private final ii_indicadorWebDAO ii_indicadorWebDAO;
+
+    public ii_indicadorWebResource(ii_indicadorWebDAO ii_IndicadorWebDAO) {
+        this.ii_indicadorWebDAO = ii_IndicadorWebDAO;
+    }
+
+    @GET
+    @Path("/n2_01_data")
+    public Response get_ii_indicadorWeb() {
+
+        String ii_indicadorWebLista = ii_indicadorWebDAO.get_ii_indicadorWeb();
+        //new JsonParser().parse(jsonString).getAsJsonObject();
+
+        JSONObject jsonObj = new JSONObject("{\\\"phonetype\\\":\\\"N95\\\",\\\"cat\\\":\\\"WP\\\"}\"");
+
+        return Response.status(Response.Status.OK).entity(ii_indicadorWebLista).build();
+    }
+}
